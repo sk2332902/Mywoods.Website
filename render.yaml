@@ -23,7 +23,7 @@ services:
     env: node
     plan: free
     rootDir: frontend
-    buildCommand: npm install && npm run build
+    buildCommand: npm install --include=dev && npm run build
     startCommand: npm run start:render
     envVars:
       - key: VITE_API_URL
@@ -33,3 +33,7 @@ services:
           property: url
       - key: PORT
         value: 10000
+      - key: NODE_ENV
+        value: production
+      - key: NPM_CONFIG_PRODUCTION
+        value: "false"
