@@ -20,18 +20,16 @@ services:
   # 2. Frontend Static Site Service
   - type: web
     name: mywoods-frontend
-    env: static
+    env: node
     plan: free
     rootDir: frontend
     buildCommand: npm install && npm run build
-    publishDir: dist
+    startCommand: npm run start:render
     envVars:
       - key: VITE_API_URL
         fromService:
           name: mywoods-backend
           type: web
           property: url
-    routes:
-      - type: rewrite
-        source: /*
-        destination: /index.html
+      - key: PORT
+        value: 10000
